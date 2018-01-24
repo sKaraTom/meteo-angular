@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4.
 
+petit projet d'appli web météo, basée sur Angular 5, sans back-end, et consommant des webservices de l'API OpenWeatherMap.
+Le concept est très simple : pouvoir comparer les informations météorologiques de 2 villes.
+options : ville par nom ou code postal, choix du pays, géolocalisation possible.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
