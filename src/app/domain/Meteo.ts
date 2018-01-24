@@ -17,8 +17,8 @@ export class Meteo {
     humidite:number; //pourcentage
     vitesseVent:number; //vitesse m/sec
 
-    heureLever:Date;
-    heureCoucher:Date;
+    heureLever:number;
+    heureCoucher:number;
 
     heureMeteo:Date;
 }

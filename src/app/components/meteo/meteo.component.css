@@ -56,19 +56,15 @@ li {
     font-size: 1.5em;
 }
 
+/* icône de flèche lever coucher de soleil */
 .fleche {
     /* color:grey; */
 }
 
 .col-3 {
-    /* border-style: groove; */
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.col-9 {
-    /* border-style: groove; */
 }
 
 .dataSecond {
@@ -193,22 +189,15 @@ input[type=checkbox] {
     }
     
     #ligneResultats {
-        /* border-style: groove; */
         margin:0;
     }
 
     .empVille {
-        /* border-style:dashed; */
         padding:2px;
     }
 
     h2 {
         font-size: 1.7em;
-    }
-
-    #colVille2 {
-        /* border-top: 5px solid rgba(170, 165, 165, 0.5); */
-        /* padding-left:10px; */
     }
 
   }

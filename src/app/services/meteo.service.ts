@@ -67,6 +67,13 @@ export class MeteoService {
                     .map(res => res.json());
   }
 
+  // public obtenirTimeZone() {
+    
+  //   return this.http.get("./../assets/timezone.json")
+  //                   .map(res => res.json());
+
+  // }
+
   /**
    * convertir un json obtenu depuis l'API Openweathermap
    * en objet Meteo et le retourner
@@ -96,14 +103,38 @@ export class MeteoService {
     meteo.humidite = res.main.humidity;
     meteo.vitesseVent = res.wind.speed;
 
-    meteo.heureLever = res.sys.sunrise;
-    meteo.heureCoucher = res.sys.sunset;
+    this.convertirHeuresSoleilTimezone(meteo.coords,res.sys.sunrise)
+                  .subscribe(res => meteo.heureLever = res);
+    
+     this.convertirHeuresSoleilTimezone(meteo.coords,res.sys.sunset)
+                  .subscribe(res => meteo.heureCoucher = res);
+    // meteo.heureLever = res.sys.sunrise;
+    // meteo.heureCoucher = res.sys.sunset;
 
     meteo.heureMeteo = res.dt;
 
     meteo = this.traduireDesc(meteo);
 
     return meteo;
+
+  }
+
+  /**
+   * convertir une date en heure locale par l'API Google
+   * 
+   * @param coords 
+   * @param heureAConvertir 
+   */
+  public convertirHeuresSoleilTimezone(coords:Coords,heureAConvertir:number) {
+
+      let url : string = `${"https://maps.googleapis.com/maps/api/timezone/json?location=" + coords.latitude + "," + coords.longitude + "&timestamp=" + heureAConvertir + "&key=AIzaSyB_pw-MKjME3zWuO2aUhmRFfg7tbwhLeNM"}`;
+
+      // heure - 1h(à cause temps récupéré GMT+1 France, à revoir) + décalage heure été + décalage fuseau horaire
+      return this.http.get(url)
+                    .map(res => {
+                      let heureConvertie : number = heureAConvertir -3600 + res.json().dstOffset + res.json().rawOffset; 
+                      return heureConvertie;
+                    });
 
   }
 

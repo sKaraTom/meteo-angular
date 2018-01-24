@@ -36,6 +36,8 @@ export class MeteoComponent implements OnInit {
 
   ngOnInit() {
 
+    // clef google maps API : AIzaSyB_pw-MKjME3zWuO2aUhmRFfg7tbwhLeNM
+
     // booléen pour savoir si l'utilisateur est sur mobile ou laptop
     // INUTILISE
     let isMobile:boolean=  (/android|webos|iphone|ipad|ipod|blackberry|windows phone/).test(navigator.userAgent.toLowerCase());
@@ -116,6 +118,12 @@ export class MeteoComponent implements OnInit {
     else {
       emp = "1";
     }
+    
+    let options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
 
     // obtenir la position de l'utilisateur
     if (navigator.geolocation) {
@@ -130,7 +138,7 @@ export class MeteoComponent implements OnInit {
         error => {
             switch (error.code) {
                 case 1:
-                    alert('Merci d\'autorister/activer votre position GPS.');
+                    alert('Merci d\'autoriser/activer votre position GPS.');
                     break;
                 case 2:
                     alert('Position non disponible');
@@ -139,7 +147,7 @@ export class MeteoComponent implements OnInit {
                     alert('Temps dépassé');
                     break;
             }
-        });
+        },options);
     }
   }
 
