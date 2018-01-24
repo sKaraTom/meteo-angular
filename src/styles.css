@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: "MaMeteo";
+    src: url("./assets/Pacifico.ttf");
+}
+
+#conteneurGlobal {
+    padding : 0 5% 0 5%;
+}
+
+
+@media (max-width: 768px) {
+
+    #conteneurGlobal {
+        /* border-style:groove; */
+        padding: 0 2% 0 2%;
+        /* width:100% !important; */
+    }
+}

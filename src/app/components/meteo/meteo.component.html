@@ -1,0 +1,256 @@
+
+
+
+<form [formGroup]="form" (submit)="obtenirMeteo(form)">
+    <div class="form-row">
+      
+      <!-- ville ou code postal -->
+      <div class="form-group col-md-4">
+          <label for="inputZip">Ville ou code postal :</label>
+          <input type="text" class="form-control" id="inputZip" placeholder="ex: 31170, paris" formControlName="zip" minlength=2 required>
+      </div>
+
+      <!-- pays -->
+      <div class="form-group col-md-3">
+          <label for="selectCodePays">Pays : </label>
+          <select class="form-control" id="selectCodePays" formControlName="listeCode" required>
+            <option *ngFor="let codePays of listeCodePays;" [ngValue]="codePays">{{codePays.Name}}</option>
+          </select>
+      </div>
+
+      <!-- Radio emplacement -->
+      <div class="form-group col-md" id="colBouton">
+        <div class="checkEmp">	
+          <input type="checkbox" value="1" formControlName="radio" id="checkEmp" name="radio" />
+          <label for="checkEmp"></label>
+        </div>
+
+        <!-- boutons -->
+        <button type="submit" class="btn btn-info btn-circle btn-lg" [disabled]="form.invalid" [style.background]="form.value.radio==true ? 'cornflowerblue':'indianred'" data-toggle="tooltip" data-placement="top" title="Afficher météo"><i class="fa fa-search"></i></button>
+
+        <button type="button" class="btn btn-info btn-circle btn-lg" (click)="obtenirMeteoParGeoloc(form.value.radio);" [style.background]="form.value.radio==true ? 'cornflowerblue':'indianred'" data-toggle="tooltip" data-placement="top" title="Afficher météo par géoloc" style="margin-left:7px;"><i class="fas fa-crosshairs"></i></button>
+
+      </div>
+      
+    </div>
+    
+</form>
+
+
+<!--******** RESULTATS ********** -->
+<div class="row" id="ligneResultats">
+
+  <!-- VILLE 1 -->
+  <div class="col-sm-6 empVille">
+    <div *ngIf="meteo1.nomVille">  
+      <h2 class="titreVille" id="titreVille1">{{meteo1.nomVille}}&nbsp; <span class="codePays">({{meteo1.codePays}})</span></h2>
+      
+      <ul class="list-group">
+        
+        <!-- description -->
+        <li class="list-group-item"> 
+          <div class="row dataPrinc">
+            <div class="col-3 ">
+              <img src="https://openweathermap.org/img/w/{{meteo1.codePicto}}.png" *ngIf="meteo1.codePicto" />
+            </div>
+            <div class="col-9 ">
+              {{meteo1.description}}
+            </div>
+          </div>
+
+          <!-- nuages & humidité -->
+          <div class="row dataSecond">
+            <div class="col-3"></div>
+            <div class="col-9 ">
+              <i class="fas fa-cloud"></i>
+              {{meteo1.pourcentageNuages}}% &emsp;
+              <i class="fas fa-tint"></i> 
+              {{meteo1.humidite}}%
+            </div>
+          </div>
+        </li>
+
+        <!-- température -->
+        <li class="list-group-item">
+            <div class="row">
+              
+              <div class="col-3 dataPrinc">
+                <i class="fas fa-thermometer-empty" style="color:#ff6600;"></i>
+              </div>
+
+              <div class="col-9">  
+                <div class="row dataPrinc">
+                  <div class="col">
+                    {{meteo1.temperature}}°C
+                  </div>
+                </div>
+                <div class="row dataSecond">
+                    <div class="col">
+                      Min {{meteo1.tempMin}}°C &emsp;
+                      Max {{meteo1.tempMax}}°C
+                    </div>
+                </div>
+              </div>
+
+            </div>
+        </li>
+
+        <!-- vitesse vent -->
+        <li class="list-group-item">
+          <div class="row dataPrinc">
+            <div class="col-3">
+              <i class="far fa-flag"></i>
+            </div>
+            <div class="col-9">
+              {{meteo1.vitesseVent}}m/sec
+            </div>
+          </div>
+               
+        </li>
+        
+        <!-- heures soleil -->
+        <li class="list-group-item">
+          <div class="row dataPrinc">
+            <div class="col-3">
+                <i class="fas fa-sun" style="color:rgb(255, 208, 0);"></i>
+                <i class="fa fa-location-arrow fleche" aria-hidden="true" style="font-size:90%;"></i> 
+            </div>
+            <div class="col-9">
+              {{meteo1.heureLever* 1000 | date:'HH:mm:ss'}}
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item">
+          <div class="row dataPrinc">
+            <div class="col-3">  
+              <i class="fas fa-sun" style="color:rgb(255, 208, 0);"></i>
+              <i class="fa fa-location-arrow fa-flip-vertical fleche" data-fa-transform="flip-v" style="font-size:90%;"></i>
+            </div>
+            <div class="col-9">  
+              {{meteo1.heureCoucher* 1000 | date:'HH:mm:ss'}}
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item dernierReleve">
+          Dernier relevé : {{meteo1.heureMeteo* 1000 | date:'dd/MM/yyyy HH:mm:ss'}}
+        </li>
+
+        </ul>
+    </div>
+  </div>
+
+  <!-- VILLE 2 *********** -->
+  <div class="col-sm-6 empVille" id="colVille2">
+    <div *ngIf="meteo2.nomVille">  
+    
+    <h2 class="titreVille" id="titreVille2">{{meteo2.nomVille}}&nbsp; <span class="codePays">({{meteo2.codePays}})</span></h2>
+      
+      <ul class="list-group" id="villeDroite">
+        
+        <!-- description -->
+        <li class="list-group-item"> 
+          <div class="row dataPrinc">
+            <div class="col-3 ">
+              <img src="https://openweathermap.org/img/w/{{meteo2.codePicto}}.png" *ngIf="meteo2.codePicto" />
+            </div>
+            <div class="col-9 ">
+              {{meteo2.description}}
+            </div>
+          </div>
+
+          <!-- nuages & humidité -->
+          <div class="row dataSecond">
+            <div class="col-3"></div>
+            <div class="col-9 ">
+              <i class="fas fa-cloud"></i>
+              {{meteo2.pourcentageNuages}}% &emsp;
+              <i class="fas fa-tint"></i> 
+              {{meteo2.humidite}}%
+            </div>
+          </div>
+        </li>
+
+        <!-- température -->
+        <li class="list-group-item">
+            <div class="row">
+              
+              <div class="col-3 dataPrinc">
+                <i class="fas fa-thermometer-empty" style="color:#ff6600;"></i>
+              </div>
+
+              <div class="col-9">  
+                <div class="row dataPrinc">
+                  <div class="col">
+                    {{meteo2.temperature}}°C
+                  </div>
+                </div>
+                <div class="row dataSecond">
+                    <div class="col">
+                      Min {{meteo2.tempMin}}°C &emsp;
+                      Max {{meteo2.tempMax}}°C
+                    </div>
+                </div>
+              </div>
+
+            </div>
+        </li>
+
+        <!-- vitesse vent -->
+        <li class="list-group-item">
+          <div class="row dataPrinc">
+            <div class="col-3">
+              <i class="far fa-flag"></i>
+            </div>
+            <div class="col-9">
+              {{meteo2.vitesseVent}}m/sec
+            </div>
+          </div>
+               
+        </li>
+        
+        <!-- heures soleil -->
+        <li class="list-group-item">
+          <div class="row dataPrinc">
+            <div class="col-3">
+                <i class="fas fa-sun" style="color:rgb(255, 208, 0);"></i>
+                <i class="fa fa-location-arrow fleche" aria-hidden="true" style="font-size:90%;"></i> 
+            </div>
+            <div class="col-9">
+              {{meteo2.heureLever* 1000 | date:'HH:mm:ss'}}
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item">
+          <div class="row dataPrinc">
+            <div class="col-3">  
+              <i class="fas fa-sun" style="color:rgb(255, 208, 0);"></i>
+              <i class="fa fa-location-arrow fa-flip-vertical fleche" data-fa-transform="flip-v" style="font-size:90%;"></i>
+            </div>
+            <div class="col-9">  
+              {{meteo2.heureCoucher* 1000 | date:'HH:mm:ss'}}
+            </div>
+          </div>
+        </li>
+
+        <li class="list-group-item dernierReleve">
+          Dernier relevé : {{meteo2.heureMeteo* 1000 | date:'dd/MM/yyyy HH:mm:ss'}}
+        </li>
+
+        </ul>
+      </div>
+  </div>
+
+
+</div>
+
+
+
+<!-- 
+<pre>
+  {{meteo | json}}
+  {{form.value | json}}
+</pre> -->
+

@@ -1,0 +1,214 @@
+
+h2 {
+    text-align:center;
+    font-weight:bold;
+}
+
+
+
+#colBouton {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+}
+
+/* nom de la ville */
+.titreVille {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding:4px 0 4px 0;
+}
+
+/* code pays affiché dans le titre */
+.codePays {
+    font-size: 0.7em;
+}
+
+#titreVille1 {
+    background-color:rgb(194, 223, 248);
+}
+
+#titreVille2 {
+    background-color:rgb(248, 163, 184);
+}
+
+
+
+li {
+    border: none;
+}
+
+.dataPrinc {
+    font-size: 1.5em;
+    color:cornflowerblue;
+}
+
+#villeDroite .dataPrinc {
+    color:indianred;
+}
+
+#villeDroite .dataSecond {
+    color:indianred;
+}
+
+.dataPrinc i {
+    font-size: 1.5em;
+}
+
+.fleche {
+    /* color:grey; */
+}
+
+.col-3 {
+    /* border-style: groove; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.col-9 {
+    /* border-style: groove; */
+}
+
+.dataSecond {
+    font-size: 1em;
+    color:cornflowerblue;
+}
+
+#colBouton {
+    display: flex;
+    flex-direction: row;
+    direction:ltr;
+    align-items: flex-end;
+    /* justify-content: center; */
+    /* border-style: groove; */
+}
+
+
+.btn-circle.btn-lg {
+    width: 70px;
+    height: 70px;
+    font-size: 2em;
+    border-radius: 35px;
+    background-color: cornflowerblue;
+  }
+
+.btn-circle.btn-lg i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CHECKBOX EMPLACEMENT */
+
+input[type=checkbox] {
+	visibility: hidden;
+}
+.checkEmp {
+	width: 80px;
+	height: 35px;
+	background: whitesmoke;
+	margin: 0 5% 0 5%;
+
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+	position: relative;
+
+	-webkit-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
+	-moz-box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
+	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
+}
+
+.checkEmp:after {
+	content: '2';
+	font:30px/36px Arial, sans-serif;
+	color: indianred;
+	position: absolute;
+	right: 10px;
+	z-index: 0;
+    font-weight: bolder;
+}
+
+.checkEmp:before {
+	content: '1';
+	font: 30px/36px Arial, sans-serif;
+	color: cornflowerblue;
+	position: absolute;
+	left: 10px;
+	z-index: 0;
+	font-weight: bolder;
+}
+
+.checkEmp label {
+	display: block;
+	width: 34px;
+	height: 29px;
+
+	-webkit-border-radius: 50px;
+	-moz-border-radius: 50px;
+	border-radius: 50px;
+
+	-webkit-transition: all .4s ease;
+	-moz-transition: all .4s ease;
+	-o-transition: all .4s ease;
+	-ms-transition: all .4s ease;
+	transition: all .4s ease;
+	cursor: pointer;
+	position: absolute;
+	top: 3px;
+	left: 3px;
+	z-index: 1;
+
+	-webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+	box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.3);
+	background: #fcfff4;
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+}
+
+.checkEmp input[type=checkbox]:checked + label {
+	left: 43px;
+}
+
+.dernierReleve {
+    text-align:center;
+    font-style:oblique;
+    font-size: 0.8em;
+}
+
+
+
+  @media (max-width: 768px) {
+    
+    #colBouton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .checkEmp {
+        margin: 0 20% 0 0;
+    }
+    
+    #ligneResultats {
+        /* border-style: groove; */
+        margin:0;
+    }
+
+    .empVille {
+        /* border-style:dashed; */
+        padding:2px;
+    }
+
+    h2 {
+        font-size: 1.7em;
+    }
+
+    #colVille2 {
+        /* border-top: 5px solid rgba(170, 165, 165, 0.5); */
+        /* padding-left:10px; */
+    }
+
+  }
