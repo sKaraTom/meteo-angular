@@ -8,12 +8,14 @@ import { MeteoComponent } from './components/meteo/meteo.component';
 import { AppRoutingModule } from './app-routing.module';
 import { MeteoService } from './services/meteo.service';
 import { CommonModule } from '@angular/common';
+import { ClearComponent } from './components/clear/clear.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MeteoComponent
+    MeteoComponent,
+    ClearComponent
     
   ],
   imports: [
