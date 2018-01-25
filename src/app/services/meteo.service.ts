@@ -54,7 +54,6 @@ export class MeteoService {
                       let meteo:Meteo = this.convertirJsonAMeteo(res.json());
                       return meteo;
                     });
-
   }
 
   /**
@@ -66,13 +65,6 @@ export class MeteoService {
     return this.http.get("./../assets/codepays.json")
                     .map(res => res.json());
   }
-
-  // public obtenirTimeZone() {
-    
-  //   return this.http.get("./../assets/timezone.json")
-  //                   .map(res => res.json());
-
-  // }
 
   /**
    * convertir un json obtenu depuis l'API Openweathermap
@@ -113,7 +105,7 @@ export class MeteoService {
 
     meteo.heureMeteo = res.dt;
 
-    meteo = this.traduireDesc(meteo);
+    // meteo = this.traduireDesc(meteo);
 
     return meteo;
 
@@ -138,87 +130,5 @@ export class MeteoService {
 
   }
 
-  /**
-   * traduire en français le champ "description"
-   * obtenu depuis l'API Openweathermap
-   * /!\ toutes les traductions n'ont pas été incluses, à enrichir à l'utilisation.
-   * 
-   * @param meteo
-   * @return meteo avec traduction de la description.
-   */
-  private traduireDesc(meteo:Meteo) : Meteo {
-
-    switch(meteo.description) {
-
-      case "clear sky":{
-        meteo.description = "ciel bleu";
-        break;
-      }
-      case "few clouds":{
-        meteo.description = "ciel bleu et quelques nuages";
-        break;
-      }
-      case "scattered clouds":{
-        meteo.description = "nuages épars";
-        break;
-      }
-      case "broken clouds":{
-        meteo.description = "temps nuageux avec éclaircies";
-        break;
-      }
-      case "overcast clouds":{
-        meteo.description = "ciel couvert";
-        break;
-      }
-      case "light intensity drizzle":{
-        meteo.description = "bruine légère";
-        break;
-      }
-      case "drizzle rain":{
-        meteo.description = "pluie fine";
-        break;
-      }
-      case "rain":{
-        meteo.description = "temps pluvieux";
-        break;
-      }
-      case "shower rain":{
-        meteo.description = "averses";
-        break;
-      }
-      case "light rain":{
-        meteo.description = "faible pluie";
-        break;
-      }
-      case "moderate rain":{
-        meteo.description = "pluie modérée";
-        break;
-      }
-      case "heavy intensity rain": {
-        meteo.description = "pluie intense";
-        break;
-      }
-      case "very heavy rain" : {
-        meteo.description = "pluie très intense";
-        break;
-      }
-      case "thunderstorm":{
-        meteo.description = "temps orageux";
-        break;
-      }
-      case "snow":{
-        meteo.description = "temps neigeux";
-        break;
-      }
-      case "mist" :
-      case "fog" : {
-        meteo.description = "brouillard";
-        break;
-      }
-    }
-
-    return meteo;
-
-}
 
 }

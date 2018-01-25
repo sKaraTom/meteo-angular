@@ -36,15 +36,8 @@ export class MeteoComponent implements OnInit {
 
   ngOnInit() {
 
-    // clef google maps API : AIzaSyB_pw-MKjME3zWuO2aUhmRFfg7tbwhLeNM
-
-    // booléen pour savoir si l'utilisateur est sur mobile ou laptop
-    // INUTILISE
-    let isMobile:boolean=  (/android|webos|iphone|ipad|ipod|blackberry|windows phone/).test(navigator.userAgent.toLowerCase());
-
     this.obtenirListePays();
     this.obtenirDernieresRecherches();
-
 
   }
 
@@ -68,7 +61,6 @@ export class MeteoComponent implements OnInit {
                       .subscribe(res => this.meteo2 = res);
     }
   }
-
 
   /**
    * obtenir la météo pour une ville ou code postal saisie
@@ -128,26 +120,26 @@ export class MeteoComponent implements OnInit {
     // obtenir la position de l'utilisateur
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        position => {
-            this.meteoService.obtenirMeteoParGeoloc(position.coords)
-                            .subscribe(res => {
-                                      this.sauverEtAfficherRecherche(emp,res);
-                              },
-                                       err => console.dir(err))
-        },
-        error => {
-            switch (error.code) {
-                case 1:
-                    alert('Merci d\'autoriser/activer votre position GPS.');
-                    break;
-                case 2:
-                    alert('Position non disponible');
-                    break;
-                case 3:
-                    alert('Temps dépassé');
-                    break;
-            }
-        },options);
+            position => {
+                this.meteoService.obtenirMeteoParGeoloc(position.coords)
+                                .subscribe(res => {
+                                          this.sauverEtAfficherRecherche(emp,res);
+                                  },
+                                          err => console.dir(err))
+            },
+            error => {
+                switch (error.code) {
+                    case 1:
+                        alert('Merci d\'autoriser/activer votre position GPS.');
+                        break;
+                    case 2:
+                        alert('Position non disponible');
+                        break;
+                    case 3:
+                        alert('Temps dépassé');
+                        break;
+                }
+            },options);
     }
   }
 
