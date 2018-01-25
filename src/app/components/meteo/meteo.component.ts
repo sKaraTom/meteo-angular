@@ -20,6 +20,7 @@ export class MeteoComponent implements OnInit {
 
   public form: FormGroup; // formulaire de recherche
 
+
   constructor(private meteoService:MeteoService) { 
     
     this.meteo1 = new Meteo();
@@ -28,7 +29,7 @@ export class MeteoComponent implements OnInit {
     this.form = new FormGroup({
       zip : new FormControl(),
       listeCode : new FormControl(),
-      radio : new FormControl()
+      radio : new FormControl(true)
     });
 
 
@@ -166,23 +167,38 @@ export class MeteoComponent implements OnInit {
   /**
    * obtenir la liste des pays pour le dropdown de saisie :
    * si dans localStorage --> le récupérer
-   * sinon le charger depuis le service
+   * sinon le charger depuis le fichier via le service
    * initialiser le formulaire de saisie une fois la liste obtenue.
    * 
    */
   public obtenirListePays() : void {
     
     if(!localStorage.getItem('cp')) {
-      this.meteoService.obtenirCodesPays()
+        this.chargerListePaysDepuisFichier();
+    }
+    else {
+      this.listeCodePays = JSON.parse(localStorage.getItem('cp'));
+
+      // tester que la liste des pays est la bonne.
+      if(this.listeCodePays[72].Code !== "FR")
+          this.chargerListePaysDepuisFichier();
+      else
+          this.initialiserFormulaire();
+    }
+  }
+
+  /**
+   * méthode d'appel du service pour charger la liste depuis le fichier json.
+   * initialisation du formulaire.  
+   */
+  public chargerListePaysDepuisFichier() : void {
+
+    this.meteoService.obtenirCodesPays()
                         .subscribe(res => {this.listeCodePays = res;
                                             localStorage.setItem('cp',JSON.stringify(this.listeCodePays));
                                             this.initialiserFormulaire();
                         });
-    }
-    else {
-      this.listeCodePays = JSON.parse(localStorage.getItem('cp'));
-      this.initialiserFormulaire();
-    }
+
   }
 
   /**
@@ -193,7 +209,7 @@ export class MeteoComponent implements OnInit {
     
     this.form = new FormGroup({
       zip : new FormControl(),
-      listeCode : new FormControl(this.listeCodePays[75]),
+      listeCode : new FormControl(this.listeCodePays[72]),
       radio : new FormControl(true)
     });
   }

@@ -62,7 +62,7 @@ export class MeteoService {
    */
   public obtenirCodesPays() {
 
-    return this.http.get("./../assets/codepays.json")
+    return this.http.get("./../assets/pays.json")
                     .map(res => res.json());
   }
 
@@ -104,8 +104,6 @@ export class MeteoService {
     // meteo.heureCoucher = res.sys.sunset;
 
     meteo.heureMeteo = res.dt;
-
-    // meteo = this.traduireDesc(meteo);
 
     return meteo;
 

@@ -2,17 +2,17 @@
 
 
 <form [formGroup]="form" (submit)="obtenirMeteo(form)">
-    <div class="form-row">
+    <div class="form-row" id="formSaisie">
       
       <!-- ville ou code postal -->
       <div class="form-group col-md-4">
-          <label for="inputZip">Ville ou code postal :</label>
-          <input type="text" class="form-control" id="inputZip" placeholder="ex: 31170, paris" formControlName="zip" minlength=2 required>
+          <label for="inputZip" [style.color]="form.value.radio==true ? 'cornflowerblue':'indianred'">Ville ou code postal :</label>
+          <input type="text" class="form-control" id="inputZip" placeholder="ex: 75000, toulouse..." formControlName="zip" minlength=2 required>
       </div>
 
       <!-- pays -->
       <div class="form-group col-md-3">
-          <label for="selectCodePays">Pays : </label>
+          <label for="selectCodePays" [style.color]="form.value.radio==true ? 'cornflowerblue':'indianred'">Pays : </label>
           <select class="form-control" id="selectCodePays" formControlName="listeCode" required>
             <option *ngFor="let codePays of listeCodePays;" [ngValue]="codePays">{{codePays.Name}}</option>
           </select>
@@ -26,9 +26,9 @@
         </div>
 
         <!-- boutons -->
-        <button type="submit" class="btn btn-info btn-circle btn-lg" [disabled]="form.invalid" [style.background]="form.value.radio==true ? 'cornflowerblue':'indianred'" data-toggle="tooltip" data-placement="top" title="Afficher météo"><i class="fa fa-search"></i></button>
+        <button type="submit" class="btn btn-info btn-circle btn-lg" [disabled]="form.invalid" [style.background]="form.value.radio==true ? 'cornflowerblue':'indianred'" data-toggle="tooltip" data-placement="top" title="Afficher météo pour une ville saisie"><i class="fa fa-search"></i></button>
 
-        <button type="button" class="btn btn-info btn-circle btn-lg" (click)="obtenirMeteoParGeoloc(form.value.radio);" [style.background]="form.value.radio==true ? 'cornflowerblue':'indianred'" data-toggle="tooltip" data-placement="top" title="Afficher météo par géoloc" style="margin-left:7px;"><i class="fas fa-crosshairs"></i></button>
+        <button type="button" class="btn btn-info btn-circle btn-lg" (click)="obtenirMeteoParGeoloc(form.value.radio);" [style.background]="form.value.radio==true ? 'cornflowerblue':'indianred'" data-toggle="tooltip" data-placement="top" title="Afficher météo par géolocalisation" style="margin-left:7px;"><i class="fas fa-crosshairs"></i></button>
 
       </div>
       
@@ -248,9 +248,8 @@
 
 
 
-<!-- 
-<pre>
-  {{meteo | json}}
-  {{form.value | json}}
-</pre> -->
 
+<pre>
+  <!-- {{meteo | json}}
+  {{form.value | json}} -->
+</pre>

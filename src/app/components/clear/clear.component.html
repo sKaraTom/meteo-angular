@@ -2,6 +2,14 @@
     Remise à zéro réussie.
 </div>
 
+
+
 <div class="alert alert-warning" role="alert" *ngIf="compteurLocalStorage!==0;" style="margin:10%;font-weight:bold;">
   éléments dans le local Storage : {{compteurLocalStorage}}
+</div>
+
+<div align="center">
+<a routerLink="/accueil" class="liensMenu">
+  <button type="button" class="btn btn-secondary">Retour sur l'accueil</button>
+</a>
 </div>
