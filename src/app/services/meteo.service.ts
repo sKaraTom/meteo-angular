@@ -7,6 +7,7 @@ import { Meteo } from '../domain/Meteo';
 import * as urlOWM from './Url';
 import { Coords } from '../domain/Coords';
 import { CodePays } from '../domain/CodePays';
+import { Ville } from '../domain/Ville';
 
 @Injectable()
 export class MeteoService {
@@ -76,9 +77,9 @@ export class MeteoService {
   public convertirJsonAMeteo(res:any) : Meteo {
     
     let meteo:Meteo = new Meteo();
-    
-    meteo.nomVille = res.name;
-    meteo.codePays = res.sys.country;
+    meteo.ville = new Ville();
+    meteo.ville.nom = res.name;
+    meteo.ville.codePays = res.sys.country;
     meteo.description = res.weather[0].description;
     
     meteo.codePicto = res.weather[0].icon;
@@ -95,15 +96,20 @@ export class MeteoService {
     meteo.humidite = res.main.humidity;
     meteo.vitesseVent = res.wind.speed;
 
-    this.convertirHeuresSoleilTimezone(meteo.coords,res.sys.sunrise)
-                  .subscribe(res => meteo.heureLever = res);
-    
-     this.convertirHeuresSoleilTimezone(meteo.coords,res.sys.sunset)
-                  .subscribe(res => meteo.heureCoucher = res);
-    // meteo.heureLever = res.sys.sunrise;
-    // meteo.heureCoucher = res.sys.sunset;
+    if(meteo.codePays !== "FR") {
+      this.convertirHeuresSoleilTimezone(meteo.coords,res.sys.sunrise)
+                    .subscribe(res => meteo.heureLever = res);
+      
+      this.convertirHeuresSoleilTimezone(meteo.coords,res.sys.sunset)
+                    .subscribe(res => meteo.heureCoucher = res);
+    }
+    else {
+      meteo.heureLever = res.sys.sunrise;
+      meteo.heureCoucher = res.sys.sunset;
+    }
 
     meteo.heureMeteo = res.dt;
+    meteo.favori = this.attribuerClasseFavori(meteo.ville);
 
     return meteo;
 
@@ -126,6 +132,27 @@ export class MeteoService {
                       return heureConvertie;
                     });
 
+  }
+
+  /**
+   * vérifier si la ville obtenue est enregistrée en favorite.
+   * attribuer meteo.favori = "favori" si c'est le cas, sinon "nonFavori";
+   * sert pour le binding de classe CSS
+   * 
+   * @param ville 
+   */
+  public attribuerClasseFavori(ville:Ville) : string {
+    
+    let listeFavoris : Ville[] = [];
+    if(localStorage.getItem('fav'))
+      listeFavoris = JSON.parse(localStorage.getItem('fav'));
+
+    if((listeFavoris.some(x => x.nom === ville.nom)) && (listeFavoris.some(x => x.codePays === ville.codePays))  ) {
+        return "favori";
+    }
+    else {
+        return "nonFavori";
+    }
   }
 
 

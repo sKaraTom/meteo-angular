@@ -5,6 +5,7 @@ import { CodePays } from '../../domain/CodePays';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Coords } from '../../domain/Coords';
+import { Ville } from '../../domain/Ville';
 
 @Component({
   selector: 'app-meteo',
@@ -13,24 +14,31 @@ import { Coords } from '../../domain/Coords';
 })
 export class MeteoComponent implements OnInit {
 
-  public meteo1 : Meteo;
-  public meteo2: Meteo;
-
   public listeCodePays: CodePays[] = [];
 
   public form: FormGroup; // formulaire de recherche
+
+  public meteo1 : Meteo;
+  public meteo2: Meteo;
+
+  public listeFavoris : Ville[];
 
 
   constructor(private meteoService:MeteoService) { 
     
     this.meteo1 = new Meteo();
+    this.meteo1.ville = new Ville();
     this.meteo2 = new Meteo();
+    this.meteo2.ville = new Ville();
 
     this.form = new FormGroup({
       zip : new FormControl(),
+      listeFav:new FormControl(),
       listeCode : new FormControl(),
       radio : new FormControl(true)
     });
+
+    this.listeFavoris = [];
 
 
   }
@@ -40,6 +48,9 @@ export class MeteoComponent implements OnInit {
     this.obtenirListePays();
     this.obtenirDernieresRecherches();
 
+    if(localStorage.getItem('fav')) {
+      this.listeFavoris = JSON.parse(localStorage.getItem('fav'));
+    } 
   }
 
   /**
@@ -71,14 +82,27 @@ export class MeteoComponent implements OnInit {
 
     let emplacement : string;
 
-    if(form.value.radio ==false) {
+    if(form.value.radio == false) {
         emplacement = "2";
     }
     else {
         emplacement = "1";
     }
 
-    this.meteoService.obtenirMeteoParVille(form.value.zip.trim(),form.value.listeCode.Code)
+    let villeAChercher : any;
+    let codePays : string;
+    
+    if(form.value.listeFav !== null) {
+      villeAChercher = form.value.listeFav.nom;
+        codePays = form.value.listeFav.codePays;
+    }
+    else {
+        villeAChercher = form.value.zip.trim();
+        codePays = form.value.listeCode.Code;  
+    }
+        
+
+    this.meteoService.obtenirMeteoParVille(villeAChercher,codePays)
                   .subscribe(res => {
                       this.sauverEtAfficherRecherche(emplacement,res);
                     },
@@ -112,11 +136,11 @@ export class MeteoComponent implements OnInit {
       emp = "1";
     }
     
-    let options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
+    // let options = {
+    //   enableHighAccuracy: true,
+    //   timeout: 5000,
+    //   maximumAge: 0
+    // };
 
     // obtenir la position de l'utilisateur
     if (navigator.geolocation) {
@@ -140,7 +164,7 @@ export class MeteoComponent implements OnInit {
                         alert('Temps dépassé');
                         break;
                 }
-            },options);
+            });
     }
   }
 
@@ -153,17 +177,80 @@ export class MeteoComponent implements OnInit {
    * @param meteo 
    */
   public sauverEtAfficherRecherche(emplacement:string,meteo:Meteo) : void {
-
-    if(emplacement == "1")
+    
+    if(emplacement == "1") {
         this.meteo1 = meteo;
-    else
+    }
+    else {
         this.meteo2 = meteo;
+    }
 
-    let idt : string[] = [meteo.nomVille,meteo.codePays];
+    let idt : string[] = [meteo.ville.nom,meteo.ville.codePays];
     localStorage.setItem(emplacement,JSON.stringify(idt));
 
+    this.form.get('listeFav').setValue(null);
+
   }
-  
+
+  /**
+   * modifier favori : si la ville n'est pas en favori, l'ajouter.
+   * si la ville est en favori, la retirer.
+   * 
+   * @param ville 
+   */
+  public modifierFavori(meteo:Meteo) : Meteo {
+
+    switch(meteo.favori) {
+      case "favori" : {
+        this.listeFavoris = this.listeFavoris.filter(v => this.filtrerFavoris(v,meteo.ville) );
+        
+        this.listeFavoris.sort((a,b) => {
+          if (a.nom < b.nom)
+             return -1;
+           if (a.nom > b.nom)
+             return 1;
+           // a doit être égal à b
+           return 0;
+          })
+
+        localStorage.setItem('fav',JSON.stringify(this.listeFavoris));
+        meteo.favori = "nonFavori";
+        break;
+      }
+      case "nonFavori" : {
+        this.listeFavoris.push(meteo.ville);
+        this.listeFavoris.sort((a,b) => {
+          if (a.nom < b.nom)
+             return -1;
+           if (a.nom > b.nom)
+             return 1;
+           // a doit être égal à b
+           return 0;
+          })
+
+        localStorage.setItem('fav',JSON.stringify(this.listeFavoris));
+        meteo.favori = "favori";
+        break;
+      }
+    }
+
+    return meteo;
+
+  }
+
+  public filtrerFavoris(ville:Ville, villeAFiltrer:Ville) {
+    
+    if(ville.nom.toLowerCase() == villeAFiltrer.nom.toLowerCase() && (ville.codePays == villeAFiltrer.codePays)) {
+        return null;
+      }
+    else {
+        return ville;
+    }
+
+        
+  }
+
+
   /**
    * obtenir la liste des pays pour le dropdown de saisie :
    * si dans localStorage --> le récupérer
@@ -209,6 +296,7 @@ export class MeteoComponent implements OnInit {
     
     this.form = new FormGroup({
       zip : new FormControl(),
+      listeFav:new FormControl(),
       listeCode : new FormControl(this.listeCodePays[72]),
       radio : new FormControl(true)
     });
