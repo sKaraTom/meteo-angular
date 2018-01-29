@@ -10,6 +10,9 @@ import { MeteoService } from './services/meteo.service';
 import { CommonModule } from '@angular/common';
 import { ClearComponent } from './components/clear/clear.component';
 
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { ClearComponent } from './components/clear/clear.component';
     
   ],
   imports: [
-    CommonModule,ReactiveFormsModule,HttpModule, FormsModule,BrowserModule,AppRoutingModule
+    CommonModule,ReactiveFormsModule,HttpModule, FormsModule,BrowserModule,AppRoutingModule,
+    ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],
   providers: [MeteoService],
   bootstrap: [AppComponent]
