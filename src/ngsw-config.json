@@ -1,5 +1,8 @@
 {
   "index": "/index.html",
+  "appData": {
+    "test": true
+  },
   "assetGroups": [{
     "name": "app",
     "installMode": "prefetch",
@@ -16,22 +19,10 @@
     }
   }, {
     "name": "assets",
-    "installMode": "lazy",
+    "installMode": "prefetch",
     "updateMode": "prefetch",
     "resources": {
       "files": [ "/assets/**" ]
     }
-  }],
-  "DataGroups": [
-    {
-      "name": "openweatheramp",
-      "urls": ["/accueil"],
-      "cacheConfig": { 
-        "strategy": "freshness",  
-        "maxSize": 20,  
-        "maxAge": "1h",     
-        "timeout": "5s"
-      }
-    }
-  ]
+  }]
 }

@@ -12,6 +12,11 @@ import { ClearComponent } from './components/clear/clear.component';
 
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { LogUpdateService } from './services/log-update.service';
+
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 
 @NgModule({
@@ -22,10 +27,10 @@ import { environment } from '../environments/environment';
     
   ],
   imports: [
-    CommonModule,ReactiveFormsModule,HttpModule, FormsModule,BrowserModule,AppRoutingModule,
+    MatSnackBarModule,BrowserAnimationsModule,CommonModule,ReactiveFormsModule,HttpModule, FormsModule,BrowserModule,AppRoutingModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production})
   ],
-  providers: [MeteoService],
+  providers: [MeteoService,LogUpdateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

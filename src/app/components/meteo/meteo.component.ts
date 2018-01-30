@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Coords } from '../../domain/Coords';
 import { Ville } from '../../domain/Ville';
+import { LogUpdateService } from '../../services/log-update.service';
 
 @Component({
   selector: 'app-meteo',
@@ -44,6 +45,18 @@ export class MeteoComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    // this.logUpdate.updatesAvailable();
+    // console.log("ngOnInit meteo");
+    // this.swUpdate.available.subscribe(event => {
+    //   console.log('current version is ' + event.current.hash);
+    //    console.log('available version is ' + event.available.hash);
+    //  }, err => console.dir(err));
+    //  this.swUpdate.activated.subscribe(event => {
+    //    console.log('old version was', event.previous);
+    //    console.log('new version is', event.current);
+    //  }, err => console.dir(err));
+
 
     this.obtenirListePays();
     this.obtenirDernieresRecherches();
@@ -301,5 +314,6 @@ export class MeteoComponent implements OnInit {
       radio : new FormControl(true)
     });
   }
+
 
 }
