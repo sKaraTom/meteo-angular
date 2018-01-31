@@ -8,19 +8,23 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 export class LogUpdateService {
 
   constructor(private updates: SwUpdate,private snackbar: MatSnackBar) {
-
-    this.updates.available.subscribe(evt => {
-        const snack = this.snackbar.open('Mise à jour disponible', 'Relancer',{ duration: 6000});
-        snack
-        .onAction()
-        .subscribe(() => {
-            // updates.activateUpdate().then(() => document.location.reload());
-            window.location.reload();
+    
+    // if ('serviceWorker' in navigator) {
+        this.updates.available.subscribe(evt => {
+            const snack = this.snackbar.open('Mise à jour disponible', 'Relancer',{ duration: 6000});
+            snack
+            .onAction()
+            .subscribe(() => {
+                // updates.activateUpdate().then(() => document.location.reload());
+                window.location.reload();
+            });
         });
-    });
-    this.updates.checkForUpdate();
+    // }
+    // this.updates.checkForUpdate();
   }
 
+
+  // non utilisé
   public updatesAvailable() : void {
     
     console.log("updates available ?");
@@ -32,17 +36,6 @@ export class LogUpdateService {
       });
   }
   
-    public MettreAJourApp() {
-        console.log("maj activée");
-        this.updates.available.subscribe(event => {
-            // if (event.current !== event.available) {
-            this.updates.activateUpdate()
-                            .then(() => document.location.reload())
-                            .catch(err => { console.error(err);})
-            })
-        // }
-    }
-
     public ouvrirSnackBar() {
         const snack = this.snackbar.open('Update Available', 'Reload',{ duration: 6000});
         snack

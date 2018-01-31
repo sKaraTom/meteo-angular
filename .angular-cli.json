@@ -21,9 +21,15 @@
       "prefix": "app",
       "serviceWorker": true,
       "styles": [
+        "css/font-awesome/css/fontawesome-all.min.css",
+        "css/font-awesome/css/fa-brands.min.css",
+        "css/font-awesome/css/fa-regular.min.css",
+        "css/font-awesome/css/fa-solid.min.css",
+        "css/bootstrap.min.css",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [    
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

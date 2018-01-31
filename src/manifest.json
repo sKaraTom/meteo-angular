@@ -4,52 +4,22 @@
     "description":"Comparez la météo de vos villes préférées",
     "start_url": "/",
     "theme_color": "cornflowerblue",
-    "background_color": "white",
+    "background_color": "whitesmoke",
     "display": "standalone",
     "orientation": "any",
     "lang": "fr",
     
 	"icons": [
-        {
-        "src": "./assets/fav/sun-512.png",
-        "sizes": "512x512",
-        "type": "image/png"
-        },
-        {
-        "src": "./assets/fav/android-chrome-256x256.png",
-        "sizes": "256x256",
-        "type": "image/png"
-        },
-        {
+    {
         "src": "./assets/fav/android-chrome-192x192.png",
         "sizes": "192x192",
         "type": "image/png"
-        },
-      {
-        "src": "./assets/fav/apple-touch-icon.png",
-        "sizes": "76x76",
-        "type": "image/png"
-      },
-      {
-        "src": "./assets/fav/favicon-32x32.png",
-        "sizes": "32x32",
-        "type": "image/png"
-      },
-      {
-        "src": "./assets/fav/favicon-16x16.png",
-        "sizes": "16x16",
-        "type": "image/png"
-      },
-      {
-        "src": "./assets/fav/mstile-150x150.png",
-        "sizes": "150x150",
-        "type": "image/svg"
-      },
-      {
-        "src": "./assets/fav/safari-pinned-tab.svg",
-        "sizes": "16x16",
-        "type": "image/svg"
-      }
+        },    
+    {
+    "src": "./assets/fav/android-chrome-512x512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+    }
     ]
 	
 }

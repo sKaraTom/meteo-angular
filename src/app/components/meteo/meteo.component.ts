@@ -27,6 +27,8 @@ export class MeteoComponent implements OnInit {
 
   constructor(private meteoService:MeteoService) { 
     
+    
+
     this.meteo1 = new Meteo();
     this.meteo1.ville = new Ville();
     this.meteo2 = new Meteo();
@@ -45,18 +47,6 @@ export class MeteoComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    // this.logUpdate.updatesAvailable();
-    // console.log("ngOnInit meteo");
-    // this.swUpdate.available.subscribe(event => {
-    //   console.log('current version is ' + event.current.hash);
-    //    console.log('available version is ' + event.available.hash);
-    //  }, err => console.dir(err));
-    //  this.swUpdate.activated.subscribe(event => {
-    //    console.log('old version was', event.previous);
-    //    console.log('new version is', event.current);
-    //  }, err => console.dir(err));
-
 
     this.obtenirListePays();
     this.obtenirDernieresRecherches();
