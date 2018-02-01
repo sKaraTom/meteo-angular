@@ -202,7 +202,7 @@ export class MeteoComponent implements OnInit {
    * @param ville 
    */
   public modifierFavori(meteo:Meteo) : Meteo {
-
+    
     switch(meteo.favori) {
       case "favori" : {
         this.listeFavoris = this.listeFavoris.filter(v => this.filtrerFavoris(v,meteo.ville) );
@@ -218,6 +218,7 @@ export class MeteoComponent implements OnInit {
 
         localStorage.setItem('fav',JSON.stringify(this.listeFavoris));
         meteo.favori = "nonFavori";
+
         break;
       }
       case "nonFavori" : {
@@ -236,7 +237,7 @@ export class MeteoComponent implements OnInit {
         break;
       }
     }
-
+    this.form.get('listeFav').setValue(null); //TODO : ne réinitialise pas le champ.
     return meteo;
 
   }

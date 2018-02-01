@@ -1,11 +1,30 @@
 <div id="conteneurGlobal">
 
+  <div class="row">
+  
+    <div class="col-sm" id="divLogo">
+      <h1>
+        Météo<span style="color:cornflowerblue;">Mix</span> <span style="font-family:'arial';font-size: medium">v3</span>
+      </h1>
+    </div>
 
-<div id="divLogo">
-  <h1>
-    Météo<span style="color:cornflowerblue;">Mix</span> <span style="font-family:'arial';font-size: medium">v4</span>
-  </h1>
-</div>
+    <div class="col-sm">
+      <ul class="nav justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/accueil"> météo </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/clear"> reset </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li> -->
+      </ul>
+    </div>
+  </div>
 
 <router-outlet></router-outlet>
 

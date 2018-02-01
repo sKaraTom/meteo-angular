@@ -1,15 +1,22 @@
-<div class="alert alert-info" role="alert" *ngIf="compteurLocalStorage==0;" style="margin:10%;font-weight:bold;">
+<!-- <div class="alert alert-info" role="alert" *ngIf="compteurLocalStorage==0;" style="margin:10%;font-weight:bold;">
     Remise à zéro réussie.
-</div>
+</div> -->
 
 
 
-<div class="alert alert-warning" role="alert" *ngIf="compteurLocalStorage!==0;" style="margin:10%;font-weight:bold;">
+<div class="alert alert-info" role="alert" style="margin:2%;font-weight:bold;">
   éléments dans le local Storage : {{compteurLocalStorage}}
 </div>
 
-<div align="center">
+<div align="center" class="boutonClear">
+    <button type="button" class="btn btn-secondary" (click)="resetTotal()">Reset total</button>
+</div>
+<div align="center" class="boutonClear">
+  <button type="button" class="btn btn-secondary" (click)="resetGarderFavoris()">Reset en gardant favoris</button>
+</div>
+
+<div align="center" class="boutonClear">
 <a routerLink="/accueil" class="liensMenu">
-  <button type="button" class="btn btn-secondary">Retour sur l'accueil</button>
+  <button type="button" class="btn btn-info">Retour sur l'accueil</button>
 </a>
 </div>

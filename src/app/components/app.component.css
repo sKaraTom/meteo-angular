@@ -1,5 +1,22 @@
 
+.col-sm {
+    /* border-style:groove; */
+    padding:0;
+}
+
+.row {
+    /* border-style:dashed; */
+    margin:0;
+}
+
 #divLogo {
     text-align:left;
     font-family:"MaMeteo",Arial, Helvetica, sans-serif;
+    /* border-style: dotted; */
+    padding:0;
+}
+
+@media (max-width: 768px) {
+
+
 }

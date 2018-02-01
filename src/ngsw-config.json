@@ -22,7 +22,35 @@
     "installMode": "lazy",
     "updateMode": "prefetch",
     "resources": {
-      "files": [ "/assets/**","favicon.ico" ]
+      "files": [ "/assets/**" ]
     }
-  }]
+  },
+  {
+    "name": "css",
+    "installMode": "prefetch",
+    "updateMode": "prefetch",
+    "resources": {
+      "files": [ "/css/**","/fonts/**" ]
+    }
+  }
+  ],
+  "DataGroups": [
+    {
+      "name": "openweatheramp",
+      "urls": ["/accueil"],
+      "cacheConfig": { 
+        "strategy": "performance",  
+        "maxSize": 100,  
+        "maxAge": "1h"
+      }
+    }
+  ],
+  "external": {         
+     "urls": [
+             {"url": "https://code.jquery.com/jquery-3.2.1.slim.min.js"},
+             {"url": "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"},
+             {"url": "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"}          
+     ]     
+}
+
 }

@@ -11,12 +11,14 @@
       </div>
 
       <!-- pays -->
+      <!-- <div class="col-md-3"> -->
       <div class="form-group col-md-3">
           <label for="selectCodePays" [style.color]="form.value.radio==true ? 'cornflowerblue':'indianred'">Pays : </label>
           <select class="form-control" id="selectCodePays" formControlName="listeCode" required>
             <option *ngFor="let codePays of listeCodePays;" [ngValue]="codePays">{{codePays.Name}}</option>
           </select>
       </div>
+      <!-- </div> -->
 
       <!-- favoris -->
       <div class="form-group col-md-2">
@@ -50,7 +52,7 @@
 
   <!-- VILLE 1 -->
   <div class="col-sm-6 empVille">
-    <div *ngIf="meteo1.ville.nom">  
+    <div *ngIf="meteo1.ville.nom" class="divVille">  
       <h2 class="titreVille" id="titreVille1">
         {{meteo1.ville.nom}}&nbsp; 
         <span class="codePays">({{meteo1.ville.codePays}})&nbsp;</span> 
@@ -157,7 +159,7 @@
 
   <!-- VILLE 2 *********** -->
   <div class="col-sm-6 empVille" id="colVille2">
-    <div *ngIf="meteo2.ville.nom">  
+    <div *ngIf="meteo2.ville.nom" class="divVille">  
     
     <h2 class="titreVille" id="titreVille2">{{meteo2.ville.nom}}&nbsp; 
       <span class="codePays">({{meteo2.ville.codePays}})&nbsp;</span>

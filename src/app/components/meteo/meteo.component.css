@@ -9,9 +9,33 @@ h2 {
 }
 
 #colBouton {
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
+    /* display: flex; */
+    /* align-items: flex-end; */
+    /* justify-content: flex-start; */
+}
+
+/* *****RESULTATS***** */
+
+/* Colonnes des emplacements */
+.empVille {
+    /* padding:0; */
+    /* margin:10px; */
+}
+
+/* Le style associé aux emplacements de villes */
+.divVille {
+    /* border-style:groove; */
+    margin-bottom:10px;
+    -webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+    /* position: relative; */
+    height:100%;
+    -moz-box-shadow: 1px 1px 5px 0px #9b9b9b;
+    -webkit-box-shadow: 1px 1px 5px 0px #9b9b9b;
+    -o-box-shadow: 1px 1px 5px 0px #9b9b9b;
+    box-shadow: 1px 1px 5px 0px #9b9b9b;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=5);
 }
 
 /* nom de la ville */
@@ -19,7 +43,13 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding:4px 0 4px 0;
+    /* padding:4px 0 4px 0; */
+    height:55px;
+    border-radius: 5px 5px 0 0;
+}
+
+h2 {
+    font-size: 1.8em;
 }
 
 /* code pays affiché dans le titre */
@@ -29,16 +59,11 @@ h2 {
 
 #titreVille1 {
     background-color:rgb(194, 223, 248);
-    border-radius: 10px;
-    /* background-color:cornflowerblue; */
-    /* color: white; */
+    
 }
 
 #titreVille2 {
     background-color:rgb(248, 163, 184);
-    border-radius: 10px;
-    /* background-color:indianred; */
-    /* color:white; */
 }
 
 .favori {
@@ -230,11 +255,18 @@ input[type=checkbox] {
     }
 
     .empVille {
-        padding:2px;
+        padding:3px;
     }
 
     h2 {
-        font-size: 1.7em;
+        font-size: 1.6em;
+    }
+
+    .favori:hover, .nonFavori:hover  {
+        background:none;
+        /* background: transparent !important; */
+        /* color: #ff5e00 !important; */
+        text-shadow: 0px -1px 0px #CD0707, -1px 0px 0px #CD0707, 0px 1px 0px #CD0707, 1px 0px 0px #CD0707 !important;
     }
 
   }
