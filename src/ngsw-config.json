@@ -17,22 +17,23 @@
         "/*.chunk.js"
       ]
     }
-  }, {
-    "name": "assets",
-    "installMode": "lazy",
-    "updateMode": "prefetch",
-    "resources": {
-      "files": [ "/assets/**" ]
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [ "/assets/**" ]
+      }
+    },
+    {
+      "name": "css",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [ "/css/**","/fonts/**" ]
+      }
     }
-  },
-  {
-    "name": "css",
-    "installMode": "prefetch",
-    "updateMode": "prefetch",
-    "resources": {
-      "files": [ "/css/**","/fonts/**" ]
-    }
-  }
   ],
   "DataGroups": [
     {

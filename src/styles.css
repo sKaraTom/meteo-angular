@@ -6,8 +6,18 @@
     src: url("./fonts/Pacifico.ttf");
 }
 
-#conteneurGlobal {
-    padding : 0 5% 0 5%;
+body {
+    min-height:100vh;
+    background: -moz-linear-gradient(-45deg, rgba(224,243,250,0.3) 0%, rgba(216,240,252,0.3) 50%, rgba(184,226,246,0.3) 51%, rgba(182,223,253,0.3) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, rgba(224,243,250,0.3) 0%,rgba(216,240,252,0.3) 50%,rgba(184,226,246,0.3) 51%,rgba(182,223,253,0.3) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, rgba(224,243,250,0.3) 0%,rgba(216,240,252,0.3) 50%,rgba(184,226,246,0.3) 51%,rgba(182,223,253,0.3) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4de0f3fa', endColorstr='#4db6dffd',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background-color: white;
+    
+}
+
+.row {
+    background-color:transparent;
 }
 
 

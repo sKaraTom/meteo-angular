@@ -9,6 +9,7 @@ import { Ville } from '../../domain/Ville';
 export class ClearComponent implements OnInit {
 
   compteurLocalStorage : number;
+  dateMaintenant : Date = new Date();
 
   constructor() { }
 

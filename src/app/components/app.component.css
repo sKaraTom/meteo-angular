@@ -1,4 +1,11 @@
 
+#conteneurGlobal {
+    padding : 0 5% 0 5%;
+    background-color: transparent;
+    
+}
+
+
 .col-sm {
     /* border-style:groove; */
     padding:0;

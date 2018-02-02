@@ -9,23 +9,20 @@ h2 {
 }
 
 #colBouton {
-    /* display: flex; */
-    /* align-items: flex-end; */
-    /* justify-content: flex-start; */
 }
 
 /* *****RESULTATS***** */
 
 /* Colonnes des emplacements */
 .empVille {
-    /* padding:0; */
-    /* margin:10px; */
+    /* background-clip:content-box; */
+    /* background-color: white; */
 }
 
 /* Le style associé aux emplacements de villes */
 .divVille {
     /* border-style:groove; */
-    margin-bottom:10px;
+    /* margin-bottom:10px; */
     -webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
@@ -35,19 +32,37 @@ h2 {
     -o-box-shadow: 0px 0px 3px 0px #656565;
     box-shadow: 0px 0px 3px 0px #656565;
     filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=4);
+
+
+    background: -moz-linear-gradient(-45deg, rgba(255,255,255,0.5) 0%, rgba(243,243,243,0.5) 50%, rgba(237,237,237,0.5) 51%, rgba(255,255,255,0.5) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, rgba(255,255,255,0.5) 0%,rgba(243,243,243,0.5) 50%,rgba(237,237,237,0.5) 51%,rgba(255,255,255,0.5) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, rgba(255,255,255,0.5) 0%,rgba(243,243,243,0.5) 50%,rgba(237,237,237,0.5) 51%,rgba(255,255,255,0.5) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#80ffffff', endColorstr='#80ffffff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    background-color: white;
 }
 
-/* nom de la ville */
+li {
+    background-color:transparent
+}
+
+/* zone de nom de la ville */
 .titreVille {
     display: flex;
     align-items: center;
     justify-content: center;
     height:55px;
     border-radius: 5px 5px 0 0;
+    font-size: 1.8em;
+    font-weight: bold;
+    padding:0;
+    width:100%;
+    position: relative;
+    /* color:whitesmoke; */
 }
 
-h2 {
-    font-size: 1.8em;
+.divFavori {
+    position : absolute;
+    right:5%;
 }
 
 /* code pays affiché dans le titre */
@@ -56,14 +71,16 @@ h2 {
 }
 
 #titreVille1 {
-    background-color:rgb(194, 223, 248);
-    
+    /* background-color:rgb(194, 223, 248); */
+    background-color: cornflowerblue;
 }
 
 #titreVille2 {
-    background-color:rgb(248, 163, 184);
+    /* background-color:rgb(248, 163, 184); */
+    background-color: indianred;
 }
 
+/* style du picto favori (étoile) */
 .favori {
     font-size: 1em;
     -webkit-transition: opacity 0.1s ease, background 0.1s ease, text-shadow 0.1s ease, color 0.1s ease;
@@ -249,7 +266,7 @@ input[type=checkbox] {
         padding:3px;
     }
 
-    h2 {
+    .titreVille {
         font-size: 1.6em;
     }
 
