@@ -29,13 +29,12 @@ h2 {
     -webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
-    /* position: relative; */
     height:100%;
-    -moz-box-shadow: 1px 1px 5px 0px #9b9b9b;
-    -webkit-box-shadow: 1px 1px 5px 0px #9b9b9b;
-    -o-box-shadow: 1px 1px 5px 0px #9b9b9b;
-    box-shadow: 1px 1px 5px 0px #9b9b9b;
-    filter:progid:DXImageTransform.Microsoft.Shadow(color=#9b9b9b, Direction=134, Strength=5);
+    -moz-box-shadow: 0px 0px 3px 0px #656565;
+    -webkit-box-shadow: 0px 0px 3px 0px #656565;
+    -o-box-shadow: 0px 0px 3px 0px #656565;
+    box-shadow: 0px 0px 3px 0px #656565;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=NaN, Strength=4);
 }
 
 /* nom de la ville */
@@ -43,7 +42,6 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* padding:4px 0 4px 0; */
     height:55px;
     border-radius: 5px 5px 0 0;
 }
@@ -67,24 +65,19 @@ h2 {
 }
 
 .favori {
-    font-size: 0.9em;
-    text-shadow: none !important;
+    font-size: 1em;
     -webkit-transition: opacity 0.1s ease, background 0.1s ease, text-shadow 0.1s ease, color 0.1s ease;
     transition: opacity 0.1s ease, background 0.1s ease, text-shadow 0.1s ease, color 0.1s ease;
     background: transparent;
-    color: rgba(0, 0, 0, 0.15);
-    background: transparent !important;
-    color: rgb(255, 208, 0) !important;
-    text-shadow: 0px -1px 0px #aa5301, -1px 0px 0px #aa5301, 0px 1px 0px #aa5301, 1px 0px 0px #aa5301 !important;
-
-    /* color:rgb(255, 208, 0) */
+    color: rgb(255, 208, 0);
+    text-shadow: 0px -1px 0px #b86800, -1px 0px 0px #b86800, 0px 1px 0px #b86800, 1px 0px 0px #b86800 !important;
 }
 
 .nonFavori {
     color:white;
     border-color: #cd0707;
     border-width: x-large;
-    font-size: 0.9em;
+    font-size: 1em;
     text-shadow: none !important;
     -webkit-transition: opacity 0.1s ease, background 0.1s ease, text-shadow 0.1s ease, color 0.1s ease;
     transition: opacity 0.1s ease, background 0.1s ease, text-shadow 0.1s ease, color 0.1s ease;
@@ -93,10 +86,8 @@ h2 {
 }
 
 .favori:hover, .nonFavori:hover  {
-    background: transparent;
-    background: transparent !important;
-    color: #ff5e00 !important;
-    text-shadow: 0px -1px 0px #CD0707, -1px 0px 0px #CD0707, 0px 1px 0px #CD0707, 1px 0px 0px #CD0707 !important;
+    /* text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.40); */
+    font-size:1.05em; 
 }
 
 li {
@@ -263,10 +254,8 @@ input[type=checkbox] {
     }
 
     .favori:hover, .nonFavori:hover  {
-        background:none;
-        /* background: transparent !important; */
-        /* color: #ff5e00 !important; */
-        text-shadow: 0px -1px 0px #CD0707, -1px 0px 0px #CD0707, 0px 1px 0px #CD0707, 1px 0px 0px #CD0707 !important;
+        font-size:1em; 
+        text-shadow: none;
     }
 
   }

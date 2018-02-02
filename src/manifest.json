@@ -2,7 +2,7 @@
     "short_name": "MeteoMix",
     "name": "MétéoMix",
     "description":"Comparez la météo de vos villes préférées",
-    "start_url": "/",
+    "start_url": "./index.html",
     "theme_color": "cornflowerblue",
     "background_color": "whitesmoke",
     "display": "standalone",

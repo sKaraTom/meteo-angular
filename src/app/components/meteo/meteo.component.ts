@@ -95,7 +95,9 @@ export class MeteoComponent implements OnInit {
     let villeAChercher : any;
     let codePays : string;
     
-    if(form.value.listeFav !== null) {
+    console.dir(form.value.listeFav);
+
+    if(form.value.listeFav !== 1) {
       villeAChercher = form.value.listeFav.nom;
         codePays = form.value.listeFav.codePays;
     }
@@ -191,7 +193,7 @@ export class MeteoComponent implements OnInit {
     let idt : string[] = [meteo.ville.nom,meteo.ville.codePays];
     localStorage.setItem(emplacement,JSON.stringify(idt));
 
-    this.form.get('listeFav').setValue(null);
+    this.form.get('listeFav').setValue(1);
 
   }
 
@@ -206,7 +208,7 @@ export class MeteoComponent implements OnInit {
     switch(meteo.favori) {
       case "favori" : {
         this.listeFavoris = this.listeFavoris.filter(v => this.filtrerFavoris(v,meteo.ville) );
-        
+
         this.listeFavoris.sort((a,b) => {
           if (a.nom < b.nom)
              return -1;
@@ -218,7 +220,6 @@ export class MeteoComponent implements OnInit {
 
         localStorage.setItem('fav',JSON.stringify(this.listeFavoris));
         meteo.favori = "nonFavori";
-
         break;
       }
       case "nonFavori" : {
@@ -237,7 +238,7 @@ export class MeteoComponent implements OnInit {
         break;
       }
     }
-    this.form.get('listeFav').setValue(null); //TODO : ne réinitialise pas le champ.
+    this.form.get('listeFav').setValue(1);
     return meteo;
 
   }
@@ -300,11 +301,10 @@ export class MeteoComponent implements OnInit {
     
     this.form = new FormGroup({
       zip : new FormControl(),
-      listeFav:new FormControl(),
+      listeFav:new FormControl(1),
       listeCode : new FormControl(this.listeCodePays[72]),
       radio : new FormControl(true)
     });
   }
-
 
 }
